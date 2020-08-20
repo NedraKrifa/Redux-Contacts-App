@@ -1,0 +1,17 @@
+.header{
+    background-color: cadetblue;
+    display: grid;
+    justify-items: center;
+    color: white;
+}
+.contact-form{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    width: 700px;
+
+}
+.contacts{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    width: 900px;  
+}
