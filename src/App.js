@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Contacts from "./Components/Contacts/Contacts";
 import Header from "./Components/Layout/Header/Header";
 import ContactForm from "./Components/Contacts/ContactForm";
 import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addNewContact, editTheContact } from "./actions/contactActions";
 
 function App() {
-  const [contacts, setContacts] = useState([]);
+  const contacts = useSelector((state) => state.contacts);
+  const dispatch = useDispatch();
+
   const [userName, setUserName] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,14 +19,9 @@ function App() {
   const [emailEdit, setEmailEdit] = useState("");
   const [phoneEdit, setPhoneEdit] = useState("");
   const [idEdit, setIdEdit] = useState("");
+  const [index,setIndex] = useState("");
   const [showEditForm, setShowEditForm] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  useEffect(() => {
-    fetch("http://jsonplaceholder.typicode.com/users")
-      .then((data) => data.json())
-      .then((res) => setContacts(res))
-      .catch(console.log);
-  }, []);
   const resetInputField = () => {
     setUserName("");
     setName("");
@@ -56,13 +55,13 @@ function App() {
   const addContact = (e) => {
     e.preventDefault();
     const contact = {
-      id: contacts.length + 1,
+      id: contacts[contacts.length-1].id + 1,
       username: userName,
       name: name,
       email: email,
       phone: phone,
     };
-    setContacts([...contacts, contact]);
+    dispatch(addNewContact(contact));
     resetInputField();
   };
   const handleContactEditChange = (e) => {
@@ -82,13 +81,14 @@ function App() {
         break;
     }
   };
-  const setId = (id) => {
+  const setId = (id,i) => {
     setShowEditForm(true);
     setIdEdit(id);
-    setNameEdit(contacts[id - 1].name);
-    setUserNameEdit(contacts[id - 1].username);
-    setEmailEdit(contacts[id - 1].email);
-    setPhoneEdit(contacts[id - 1].phone);
+    setIndex(i);
+    setNameEdit(contacts[i].name);
+    setUserNameEdit(contacts[i].username);
+    setEmailEdit(contacts[i].email);
+    setPhoneEdit(contacts[i].phone);
   };
   const editContact = (e) => {
     e.preventDefault();
@@ -99,23 +99,20 @@ function App() {
       email: emailEdit,
       phone: phoneEdit,
     };
-    contacts[idEdit - 1] = contact;
-    setContacts([...contacts]);
+    dispatch(editTheContact(contact,index))
     resetInputEditField();
     setShowEditForm(false);
   };
-  const deleteContact = (id) => {
-    setContacts([...contacts.filter((contact) => contact.id !== id)]);
-  };
+
   return (
     <div>
       <Header />
       <div className="contact-form">
         <div onClick={() => setShowForm(!showForm)}>
           {showForm ? (
-            <i class="fas fa-angle-double-up"></i>
+            <i className="fas fa-angle-double-up"></i>
           ) : (
-            <i class="fas fa-angle-double-down"></i>
+            <i className="fas fa-angle-double-down"></i>
           )}
         </div>
         {showForm ? (
@@ -147,11 +144,7 @@ function App() {
       ) : (
         ""
       )}
-      <Contacts
-        contacts={contacts}
-        setId={setId}
-        deleteContact={deleteContact}
-      />
+      <Contacts setId={setId} />
     </div>
   );
 }

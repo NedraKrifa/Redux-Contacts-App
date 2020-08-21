@@ -1,8 +1,10 @@
 import React from "react";
 import HeadTable from "./HeadTable";
 import BodyTable from "./BodyTable";
+import { useSelector } from "react-redux";
 
-function Table({ contacts, setId, deleteContact }) {
+function Table({ setId }) {
+  const contacts = useSelector((state) => state.contacts);
   return (
     <table>
       <thead>
@@ -10,11 +12,7 @@ function Table({ contacts, setId, deleteContact }) {
       </thead>
       {contacts.length ? (
         <tbody>
-          <BodyTable
-            contacts={contacts}
-            setId={setId}
-            deleteContact={deleteContact}
-          />
+          <BodyTable setId={setId} />
         </tbody>
       ) : (
         <p>

@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "../Layout/Table/Table";
-function Contacts({ contacts, setId, deleteContact }) {
+import { useDispatch } from "react-redux";
+import { getAllContacts } from "../../actions/contactActions";
+
+function Contacts({ setId }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(getAllContacts()), []);
+
   const [showContacts, setShowContacts] = useState(false);
+
   return (
     <div className="contacts">
-      <div onClick={()=>setShowContacts(!showContacts)}>
+      <div onClick={() => setShowContacts(!showContacts)}>
         {showContacts ? (
-          <i class="fas fa-angle-double-up"></i>
+          <i className="fas fa-angle-double-up"></i>
         ) : (
-          <i class="fas fa-angle-double-down"></i>
+          <i className="fas fa-angle-double-down"></i>
         )}
       </div>
       {showContacts ? (
-        <Table
-          contacts={contacts}
-          setId={setId}
-          deleteContact={deleteContact}
-        />
+        <Table setId={setId} />
       ) : (
         ""
       )}
