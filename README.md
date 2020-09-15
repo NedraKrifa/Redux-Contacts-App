@@ -2,4 +2,4 @@
 A Contacts app built with reactjs using React Hooks, Redux
 
 ## Demo
-Demo [HERE](link)
+Demo [HERE](https://nedrakrifa.github.io/Redux-Contacts-App/)
