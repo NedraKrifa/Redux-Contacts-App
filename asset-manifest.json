@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Redux-Contacts-App/static/css/main.5d02160d.chunk.css",
+    "main.js": "/Redux-Contacts-App/static/js/main.c6b5643a.chunk.js",
+    "main.js.map": "/Redux-Contacts-App/static/js/main.c6b5643a.chunk.js.map",
+    "runtime-main.js": "/Redux-Contacts-App/static/js/runtime-main.408786ef.js",
+    "runtime-main.js.map": "/Redux-Contacts-App/static/js/runtime-main.408786ef.js.map",
+    "static/js/2.9aefdbdc.chunk.js": "/Redux-Contacts-App/static/js/2.9aefdbdc.chunk.js",
+    "static/js/2.9aefdbdc.chunk.js.map": "/Redux-Contacts-App/static/js/2.9aefdbdc.chunk.js.map",
+    "index.html": "/Redux-Contacts-App/index.html",
+    "precache-manifest.aa0d68b7711341781152a7aed61659f6.js": "/Redux-Contacts-App/precache-manifest.aa0d68b7711341781152a7aed61659f6.js",
+    "service-worker.js": "/Redux-Contacts-App/service-worker.js",
+    "static/css/main.5d02160d.chunk.css.map": "/Redux-Contacts-App/static/css/main.5d02160d.chunk.css.map",
+    "static/js/2.9aefdbdc.chunk.js.LICENSE.txt": "/Redux-Contacts-App/static/js/2.9aefdbdc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.408786ef.js",
+    "static/js/2.9aefdbdc.chunk.js",
+    "static/css/main.5d02160d.chunk.css",
+    "static/js/main.c6b5643a.chunk.js"
+  ]
+}
